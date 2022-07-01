@@ -8,12 +8,12 @@ const Todo = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/items")
+    fetch("https://sheltered-beyond-57135.herokuapp.com/items")
       .then((res) => res.json())
       .then((data) => setItems(data));
   }, []);
 
-  fetch("http://localhost:5000/item", {
+  fetch("https://sheltered-beyond-57135.herokuapp.com/item", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
