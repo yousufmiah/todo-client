@@ -1,10 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import List from "./List";
 
-const Home = () => {
+const Todo = () => {
   const [inputItem, setInputItem] = useState("");
+  console.log(inputItem);
 
   const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/items")
+      .then((res) => res.json())
+      .then((data) => setItems(data));
+  }, []);
+
+  fetch("http://localhost:5000/item", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(inputItem),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Success:", data);
+    });
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -44,12 +63,12 @@ const Home = () => {
         </div>
       </div>
       <div>
-        {items.map((item, index) => (
-          <List key={index} id={index} item={item}></List>
+        {items.map((item) => (
+          <List key={item._id} item={item}></List>
         ))}
       </div>
     </div>
   );
 };
 
-export default Home;
+export default Todo;

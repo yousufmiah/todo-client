@@ -2,7 +2,8 @@ import React from "react";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { FiEdit } from "react-icons/fi";
 
-const List = ({ item }) => {
+const TaskList = ({ item }) => {
+  console.log(item);
   const editItem = () => {
     console.log("edit");
   };
@@ -28,4 +29,4 @@ const List = ({ item }) => {
   );
 };
 
-export default List;
+export default TaskList;

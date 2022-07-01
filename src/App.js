@@ -12,7 +12,7 @@ function App() {
     <div>
       <Header></Header>
       <Routes>
-        <Route path="/" element={<Task />} />
+        <Route path="task" element={<Task />} />
         <Route path="todo" element={<Todo />} />
         <Route path="calender" element={<Calender />} />
       </Routes>
