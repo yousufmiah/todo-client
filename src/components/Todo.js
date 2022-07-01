@@ -3,7 +3,7 @@ import List from "./List";
 
 const Todo = () => {
   const [inputItem, setInputItem] = useState("");
-  console.log(inputItem);
+  // console.log(inputItem);
 
   const [items, setItems] = useState([]);
 
@@ -11,19 +11,7 @@ const Todo = () => {
     fetch("https://sheltered-beyond-57135.herokuapp.com/items")
       .then((res) => res.json())
       .then((data) => setItems(data));
-  }, []);
-
-  fetch("https://sheltered-beyond-57135.herokuapp.com/item", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(inputItem),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("Success:", data);
-    });
+  }, [items]);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -31,13 +19,22 @@ const Todo = () => {
   };
 
   const handlerAdd = () => {
+    const newItem = { name: inputItem };
+
     if (!inputItem) {
       alert("Please type your list.");
     } else {
-      setItems((oldItems) => {
-        return [...oldItems, inputItem];
-      });
-      setInputItem("");
+      fetch("https://sheltered-beyond-57135.herokuapp.com/item", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newItem),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Success:", data);
+        });
     }
   };
 
