@@ -8,7 +8,7 @@ const Todo = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch("https://sheltered-beyond-57135.herokuapp.com/items")
+    fetch("http://localhost:5000/items")
       .then((res) => res.json())
       .then((data) => setItems(data));
   }, [items]);
@@ -24,7 +24,7 @@ const Todo = () => {
     if (!inputItem) {
       alert("Please type your list.");
     } else {
-      fetch("https://sheltered-beyond-57135.herokuapp.com/item", {
+      fetch("http://localhost:5000/item", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
