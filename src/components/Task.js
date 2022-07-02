@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import TaskList from "./TaskList";
+import List from "./List";
+// import TaskList from "./TaskList";
 
 const Task = () => {
   const [items, setItems] = useState([]);
@@ -8,7 +9,7 @@ const Task = () => {
     fetch("https://sheltered-beyond-57135.herokuapp.com/items")
       .then((res) => res.json())
       .then((data) => setItems(data));
-  }, []);
+  }, [items]);
 
   return (
     <div className="text-center">
@@ -18,7 +19,8 @@ const Task = () => {
 
       <div>
         {items.map((item) => (
-          <TaskList key={item._id} item={item}></TaskList>
+          // <TaskList key={item._id} item={item}></TaskList>
+          <List key={item._id} item={item}></List>
         ))}
       </div>
     </div>
