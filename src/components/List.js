@@ -13,7 +13,7 @@ const List = ({ item }) => {
     // console.log("delete");
     const proceed = window.confirm("Are you sure to delete?");
     if (proceed) {
-      const url = `http://localhost:5000/items/${id}`;
+      const url = `https://sheltered-beyond-57135.herokuapp.com/items/${id}`;
       fetch(url, {
         method: "DELETE",
       }).then((res) =>
